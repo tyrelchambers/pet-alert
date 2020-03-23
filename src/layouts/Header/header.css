@@ -1,0 +1,14 @@
+.header {
+  background: transparent;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: white;
+}
+
+.brand-title {
+  font-size: 1.2rem;
+  color: var(--title);
+  font-weight: bold;
+}

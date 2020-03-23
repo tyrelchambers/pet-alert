@@ -1,0 +1,29 @@
+#bgVideo {
+  height: 100vh;
+  position: absolute;
+  right: -300px;
+}
+
+.index-wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.index-body {
+  width: fit-content;
+  position: relative;
+  left: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgb(255,255,255);
+  padding: 2em;
+}
+
+.index-body div {
+  width: 100%;
+  max-width: 800px;
+}
+
