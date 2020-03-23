@@ -4,12 +4,14 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Index from './pages/Index/Index';
+import Register from './pages/Register/Register';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router to="/">
       <Switch>
         <Route exact path="/" component={Index}/>
+        <Route exact path="/register" component={Register} />
       </Switch>
     </Router>
   </React.StrictMode>,

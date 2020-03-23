@@ -1,0 +1,28 @@
+.form {
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+
+.input {
+  background:var(--input);
+  padding: 0.4em 0.8em;
+  border-radius: 3px;
+}
+
+.input::placeholder {
+  font-style: italic;
+}
+
+.label {
+  color: var(--text);
+  margin-bottom: 5px;
+}

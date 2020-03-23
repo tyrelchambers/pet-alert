@@ -17,6 +17,7 @@ code {
   --title: #243B53;
   --text: #486581;
   --accent-primary: #4C63B6;
+  --input: #F0F4F8;
 }
 
 .title-hg {
@@ -36,4 +37,9 @@ hr {
   border: none;
   margin: 1.5em 0;
   height: 1px;
+}
+.title-lg {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--title);
 }

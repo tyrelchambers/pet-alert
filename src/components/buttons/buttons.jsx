@@ -1,14 +1,16 @@
 import React from 'react';
 import './buttons.css'
 
-export const MainButton = ({onClick, text}) => (
+export const MainButton = ({onClick, text, icon}) => (
   <button className="btn btn-primary" onClick={onClick}>
+    {icon}
     {text}
   </button>
 )
 
-export const SecButton = ({onClick, text}) => (
+export const SecButton = ({onClick, text, icon}) => (
   <button className="btn btn-secondary" onClick={onClick}>
+    {icon}
     {text}
   </button>
 )

@@ -23,12 +23,14 @@ const Index = () => {
           </p>
           <MainButton
             text="Protect your pet"
+            icon={<i className="fas fa-shield-alt mr-4"></i>}
           />
 
           <hr/>
 
           <SecButton
             text="Search serial number"
+            icon={<i className="fas fa-search mr-4"></i>}
           />
         </div>
       </div>
