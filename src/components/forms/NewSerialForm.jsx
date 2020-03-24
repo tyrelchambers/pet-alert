@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react';
 import AddressForm from './AddressForm';
 import ExistingAddress from '../ExistingAddress/ExistingAddress';
 
-const NewSerialForm = ({SerialStore, ModalStore}) => {
+const NewSerialForm = ({SerialStore, ModalStore, UserStore}) => {
   const [ serial, setSerial ] = useState("");
 
   const submitHandler = (e) => {
@@ -30,15 +30,7 @@ const NewSerialForm = ({SerialStore, ModalStore}) => {
       <AddressForm />
       <hr/>
       <h3 className="title-sm mb-1">Use an existing address</h3>
-      <ExistingAddress
-        data={{
-          addressStreet: "568 Wolfe St.",
-          addressCity: "Peterborough",
-          addressProvinceState: "Ontario",
-          addressCountry: "Canada",
-          addressZipPostalCode: "K9J 2L8"
-        }}
-      />
+      <ExistingAddress />
 
       <div className="mt-4">
         <MainButton
@@ -51,4 +43,4 @@ const NewSerialForm = ({SerialStore, ModalStore}) => {
   );
 }
 
-export default inject("SerialStore", "ModalStore")(observer(NewSerialForm));
+export default inject("SerialStore", "ModalStore", "UserStore")(observer(NewSerialForm));

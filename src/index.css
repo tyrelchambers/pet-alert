@@ -67,3 +67,9 @@ hr {
   color: var(--title);
 
 }
+
+.bg {
+  padding: 1em;
+  background-color: var(--bg);
+  border-radius: 8px;
+}
