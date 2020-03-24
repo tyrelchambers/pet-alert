@@ -2,8 +2,11 @@ import React from 'react';
 import './Index.css'
 import { MainButton, SecButton } from '../../components/buttons/buttons';
 import Header from '../../layouts/Header/Header';
+import {useHistory} from 'react-router-dom'
 
 const Index = () => {
+  let history = useHistory();
+
   return (
     <div className="index-wrapper">
       <div className="absolute top-0 z-10 right-0
@@ -24,6 +27,7 @@ const Index = () => {
           <MainButton
             text="Protect your pet"
             icon={<i className="fas fa-shield-alt mr-4"></i>}
+            onClick={() => history.push('/register')}
           />
 
           <hr/>

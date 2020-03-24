@@ -18,12 +18,12 @@ const RegisterForm = () => {
 
       <div className="field-group">
         <label htmlFor="password" className="label">Password</label>
-        <input type="text" className="input" name="password" placeholder="enter your password"/>
+        <input type="password" className="input" name="password" placeholder="enter your password"/>
       </div>
 
       <div className="field-group">
         <label htmlFor="confirmPassword" className="label">Confirm Password</label>
-        <input type="text" className="input" name="confirmPassword" placeholder="please confirm password"/>
+        <input type="password" className="input" name="confirmPassword" placeholder="please confirm password"/>
       </div>
 
       <div className="mt-8">

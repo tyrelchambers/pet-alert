@@ -8,7 +8,7 @@ const Register = () => {
       <Header />
 
       <div className="container align-center flex-column mx-auto mt-16">
-        <h1 className="title-lg text-center">Register your serial number</h1>
+        <h1 className="title-lg text-center">Create your account</h1>
 
         <RegisterForm />
       </div>

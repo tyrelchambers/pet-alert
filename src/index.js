@@ -31,7 +31,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           <React.Fragment>
             <Redirect
               to={{
-                pathname: "/signup",
+                pathname: "/register",
                 state: { from: props.location }
               }}
             />
