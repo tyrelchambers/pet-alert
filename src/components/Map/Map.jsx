@@ -8,8 +8,6 @@ const Map = () => {
     lat: 0,
     long: 0
   })
-
-  const [machine, setMachine] = useState("")
   
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success, error);
@@ -67,11 +65,10 @@ const Map = () => {
       lat: pos.coords.latitude,
       long: pos.coords.longitude
     })
-    setMachine("loaded")
   }
 
   const error = () => {
-    window.alert('No worky')
+    window.alert('Location was not discovered')
   }
   
   return(
