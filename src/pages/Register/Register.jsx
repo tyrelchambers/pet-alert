@@ -4,7 +4,7 @@ import RegisterForm from '../../components/forms/RegisterForm';
 
 const Register = () => {
   return (
-    <div clasName="wrapper">
+    <div>
       <Header />
 
       <div className="container align-center flex-column mx-auto mt-16">

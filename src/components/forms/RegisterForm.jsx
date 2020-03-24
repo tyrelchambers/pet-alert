@@ -3,13 +3,14 @@ import './forms.css'
 import { MainButton } from '../buttons/buttons';
 
 const RegisterForm = () => {
+
+  const submitHandler = e => {
+    e.preventDefault()
+    window.location.pathname = '/dashboard'
+  }
+  
   return (
     <form className="form">
-      <div className="field-group">
-        <label htmlFor="serialNumber" className="label">Serial Number</label>
-        <input type="text" className="input" name="serialNumber" placeholder="enter your serial number"/>
-      </div>
-
       <div className="field-group">
         <label htmlFor="email" className="label">Email</label>
         <input type="text" className="input" name="email" placeholder="user@example.com"/>
@@ -29,6 +30,7 @@ const RegisterForm = () => {
         <MainButton 
           icon={<i className="fas fa-check mr-4"></i>}
           text="Register"
+          onClick={e => submitHandler(e)}
         />
       </div>
     </form>

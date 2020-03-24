@@ -1,0 +1,35 @@
+.serial-wrapper {
+  padding: 2em;
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--bg);
+}
+
+.serial-item {
+  padding: 1em;
+}
+
+.serial-item:nth-child(even) {
+  background-color: var(--bg);
+  border-radius: 8px;
+}
+
+.serial-item {
+  display: flex; 
+  align-items: center;
+  justify-content: space-between;
+}
+
+.serial-actions > .edit,
+.serial-actions > .delete {
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.serial-actions > .edit:hover {
+ color: var(--accent-secondary);
+}
+
+.serial-actions > .delete:hover {
+  color: var(--danger);
+ }
