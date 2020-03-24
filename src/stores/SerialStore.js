@@ -10,6 +10,10 @@ class SerialStore {
   addSerial(serials) {
     this.serials = [...this.serials, serials];
   }
+
+  editSerial(data) {
+    console.log(data)
+  }
 }
 
 decorate(SerialStore, {

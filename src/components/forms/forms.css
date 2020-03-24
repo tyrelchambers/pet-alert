@@ -21,6 +21,7 @@
   background:var(--input);
   padding: 0.4em 0.8em;
   border-radius: 3px;
+  color: var(--text);
 }
 
 .input::placeholder {

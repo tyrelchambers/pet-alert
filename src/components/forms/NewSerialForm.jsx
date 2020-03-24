@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
 import { MainButton } from '../buttons/buttons';
 import { inject, observer } from 'mobx-react';
+import AddressForm from './AddressForm';
+import ExistingAddress from '../ExistingAddress/ExistingAddress';
 
-const NewSerialForm = ({SerialStore}) => {
+const NewSerialForm = ({SerialStore, ModalStore}) => {
   const [ serial, setSerial ] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     SerialStore.addSerial(serial);
+    ModalStore.setIsOpen(false)
   }
 
   return (
@@ -18,13 +21,34 @@ const NewSerialForm = ({SerialStore}) => {
         <input type="text" className="input" value={serial} placeholder="enter serial number" onChange={(e) => setSerial(e.target.value)}/>
       </div>
 
-      <MainButton
-        icon={<i className="fas fa-plus mr-4"></i>}
-        text="Add serial number"
-        onClick={e => submitHandler(e)}
+      <div className="field-group">
+        <label htmlFor="serialNumber" className="label">Pet Name</label>
+        <input type="text" className="input" value={serial} placeholder="enter serial number" onChange={(e) => setSerial(e.target.value)}/>
+      </div>
+
+      <hr/>
+      <AddressForm />
+      <hr/>
+      <h3 className="title-sm mb-1">Use an existing address</h3>
+      <ExistingAddress
+        data={{
+          addressStreet: "568 Wolfe St.",
+          addressCity: "Peterborough",
+          addressProvinceState: "Ontario",
+          addressCountry: "Canada",
+          addressZipPostalCode: "K9J 2L8"
+        }}
       />
+
+      <div className="mt-4">
+        <MainButton
+          icon={<i className="fas fa-arrow-alt-circle-right mr-4"></i>}
+          text="Save serial number"
+          onClick={e => submitHandler(e)}
+        />
+      </div>
     </form>
   );
 }
 
-export default inject("SerialStore")(observer(NewSerialForm));
+export default inject("SerialStore", "ModalStore")(observer(NewSerialForm));

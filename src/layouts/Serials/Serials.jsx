@@ -1,15 +1,20 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import './Serials.css'
+import EditSerialForm from '../../components/forms/EditSerialForm';
 
-const Serials = ({SerialStore}) => {
-
+const Serials = ({SerialStore, ModalStore}) => {
   const serials = SerialStore.serials.map((x,id) => (
     <div className="serial-item" key={id}>
       <h2 className="text-xl">{x}</h2>
       
       <div className="serial-actions flex flex-row align-center">
-        <i className="fas fa-pencil-alt mr-4 edit"></i>
+        <i className="fas fa-pencil-alt mr-4 edit" onClick={() => {
+          ModalStore.setIsOpen(true)
+          ModalStore.setRender(<EditSerialForm data={{
+            serialNumber: "ehiehg83hg3"
+          }} />)
+        }}></i>
         <i className="fas fa-trash delete"></i>
       </div>
     </div>
@@ -31,4 +36,4 @@ const Serials = ({SerialStore}) => {
   }
 }
 
-export default inject("SerialStore")(observer(Serials));
+export default inject("SerialStore", "ModalStore")(observer(Serials));

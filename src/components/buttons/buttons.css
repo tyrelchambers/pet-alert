@@ -19,7 +19,7 @@
 
 .btn.btn-primary:hover {
   box-shadow: 0px 6px 15px rgba(0,0,0, 0.2);
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .btn-secondary {
