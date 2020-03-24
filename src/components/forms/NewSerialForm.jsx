@@ -1,16 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { MainButton } from '../buttons/buttons';
 import { inject, observer } from 'mobx-react';
 import AddressForm from './AddressForm';
 import ExistingAddress from '../ExistingAddress/ExistingAddress';
 
-const NewSerialForm = ({SerialStore, ModalStore, UserStore}) => {
-  const [ serial, setSerial ] = useState("");
+const NewSerialForm = ({SerialStore, ModalStore}) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    SerialStore.addSerial(serial);
     ModalStore.setIsOpen(false)
   }
 
@@ -18,12 +15,17 @@ const NewSerialForm = ({SerialStore, ModalStore, UserStore}) => {
     <form className="form form-white">
       <div className="field-group">
         <label htmlFor="serialNumber" className="label">Serial Number</label>
-        <input type="text" className="input" value={serial} placeholder="enter serial number" onChange={(e) => setSerial(e.target.value)}/>
+        <input type="text" className="input" value={SerialStore.serial.number} placeholder="enter serial number" name="number" onChange={(e) => SerialStore.updateSerial("number", e.target.value)}/>
       </div>
 
       <div className="field-group">
         <label htmlFor="serialNumber" className="label">Pet Name</label>
-        <input type="text" className="input" value={serial} placeholder="enter serial number" onChange={(e) => setSerial(e.target.value)}/>
+        <input type="text" className="input" value={SerialStore.serial.pet} placeholder="your pet's name" name="pet" onChange={(e) => SerialStore.updateSerial("number", e.target.value)}/>
+      </div>
+
+      <div className="field-group">
+        <label htmlFor="serialNumber" className="label">Breed</label>
+        <input type="text" className="input" value={SerialStore.serial.breed} placeholder="breed of your pet" name="breed" onChange={(e) => SerialStore.updateSerial("number", e.target.value)}/>
       </div>
 
       <hr/>

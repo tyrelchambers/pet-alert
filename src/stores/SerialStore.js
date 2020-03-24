@@ -4,17 +4,20 @@ class SerialStore {
   
   serial = {
     number: "",
-    pet: ""
+    pet: "",
+    breed: ""
   }
 
   serials = [
     {
       number: "HIOOIH4884G77GF",
-      pet: "Stuffy"
+      pet: "Stuffy",
+      breed: "Husky"
     },
     {
       number: "HIOOIH4F333F884G77GF",
-      pet: "Boobalah"
+      pet: "Boobalah",
+      breed: "Some Cat"
     }
   ]
 
