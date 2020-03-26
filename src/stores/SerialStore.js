@@ -1,4 +1,4 @@
-import { decorate, observable, action } from "mobx";
+import { decorate, observable, action, toJS } from "mobx";
 
 class SerialStore {
   
@@ -13,26 +13,21 @@ class SerialStore {
       number: "HIOOIH4884G77GF",
       pet: "Stuffy",
       breed: "Husky",
-      vaccines: [
-        {
-          date: "01/2020",
-          vaccination: "Rabies"
-        },
-        {
-          date: "01/2020",
-          vaccination: "Rabies"
-        },
-        {
-          date: "01/2020",
-          vaccination: "Rabies"
-        }
-      ]
     },
     {
       number: "HIOOIH4F333F884G77GF",
       pet: "Boobalah",
       breed: "Some Cat"
     }
+  ]
+
+  vaccine = {
+    type: "",
+    administered: "",
+    expiry: ""
+  }
+
+  vaccines = [
   ]
 
   setSerials(serials) {
@@ -47,6 +42,33 @@ class SerialStore {
     this.serial = {...data};
   }
 
+  setVaccines(data) {
+    this.vaccines = [...this.vaccines, data]
+  }
+
+  updateVaccine(id, data) {
+    const prev = {...this.vaccines[id], ...data}
+    this.vaccines[id] = prev;    
+  }
+
+  insertNewVaccine() {
+    this.vaccines = [...this.vaccines, this.vaccine]
+  }
+
+  resetState() { 
+    this.vaccines = [];
+    this.serial = {}
+  }
+
+  submit() {
+    const payload = {
+      ...this.serial,
+      ...this.vaccines
+    }
+
+    this.resetState()
+  }
+
 }
 
 decorate(SerialStore, {
@@ -54,7 +76,11 @@ decorate(SerialStore, {
   serials: observable,
   setSerials: action,
   addSerial: action,
-  updateSerial: action
+  updateSerial: action,
+  vaccines: observable,
+  setVaccines: action,
+  updateVaccine: action,
+  resetState: action
 })
 
 export default new SerialStore();

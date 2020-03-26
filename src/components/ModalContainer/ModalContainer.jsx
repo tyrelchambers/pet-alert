@@ -2,13 +2,14 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import './ModalContainer.css'
 
-const ModalContainer = ({ModalStore}) => {
+const ModalContainer = ({ModalStore, SerialStore}) => {
   if (!ModalStore.isOpen) return null;
 
   return (
     <div className="modal-wrapper">
       <div className="close-modal" onClick={() => {
         ModalStore.setIsOpen(false)
+        SerialStore.resetState();
       }}>
         <i className="fas fa-times"></i>
       </div>
@@ -19,4 +20,4 @@ const ModalContainer = ({ModalStore}) => {
   );
 }
 
-export default inject("ModalStore")(observer(ModalContainer));
+export default inject("ModalStore", "SerialStore")(observer(ModalContainer));

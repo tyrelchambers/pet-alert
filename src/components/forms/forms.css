@@ -1,6 +1,6 @@
 .form {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2em;
@@ -31,4 +31,30 @@
 .label {
   color: var(--text);
   margin-bottom: 5px;
+  font-weight: bold;
 }
+
+input[type="date"] {
+  padding: 0.5em;
+  border-radius: 3px;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.date-picker {
+  width: fit-content;
+}
+
+.remove-vaccine {
+  display: none;
+  color: var(--danger);
+  font-size: 1.3rem;
+  margin-right: 1em;
+}
+
+.has-remove:hover > .remove-vaccine {
+  display: flex;
+}
+
