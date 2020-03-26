@@ -12,7 +12,21 @@ class SerialStore {
     {
       number: "HIOOIH4884G77GF",
       pet: "Stuffy",
-      breed: "Husky"
+      breed: "Husky",
+      vaccines: [
+        {
+          date: "01/2020",
+          vaccination: "Rabies"
+        },
+        {
+          date: "01/2020",
+          vaccination: "Rabies"
+        },
+        {
+          date: "01/2020",
+          vaccination: "Rabies"
+        }
+      ]
     },
     {
       number: "HIOOIH4F333F884G77GF",

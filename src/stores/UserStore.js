@@ -1,4 +1,4 @@
-import { decorate, observable, action } from "mobx";
+import { decorate, observable, action, computed } from "mobx";
 
 class UserStore {
   address = {
@@ -8,6 +8,19 @@ class UserStore {
     country: "",
     zipPostalCode: ""
   }
+
+  contactInfo = [
+    {
+      firstName: "John",
+      lastName: "Smith",
+      phoneNumber: "555-5555"
+    },
+    {
+      firstName: "Jane",
+      lastName: "Smith",
+      phoneNumber: "555-5555"
+    }
+  ]
 
   savedAddresses = [
     {
@@ -22,7 +35,8 @@ class UserStore {
       city: "Peterborough",
       provinceState: "Ontario",
       country: "Canada",
-      zipPostalCode: "K9J 2L8"
+      zipPostalCode: "K9J 2L8",
+      serialNumber: "HIOOIH4884G77GF"
     }
   ]
 
@@ -44,7 +58,8 @@ decorate(UserStore, {
   savedAddresses: observable,
   updateAddress: action,
   addAddresses: action,
-  addAddress: action
+  addAddress: action,
+  contactInfo: observable
 })
 
 export default new UserStore();

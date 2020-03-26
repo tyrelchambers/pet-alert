@@ -13,6 +13,8 @@ const NewSerialForm = ({SerialStore, ModalStore}) => {
 
   return (
     <form className="form form-white">
+      <h3 className="title-sm mb-1">Pet Information</h3>
+
       <div className="field-group">
         <label htmlFor="serialNumber" className="label">Serial Number</label>
         <input type="text" className="input" value={SerialStore.serial.number} placeholder="enter serial number" name="number" onChange={(e) => SerialStore.updateSerial("number", e.target.value)}/>
@@ -29,6 +31,7 @@ const NewSerialForm = ({SerialStore, ModalStore}) => {
       </div>
 
       <hr/>
+      <h3 className="title-sm mb-1">Address</h3>
       <AddressForm />
       <hr/>
       <h3 className="title-sm mb-1">Use an existing address</h3>
