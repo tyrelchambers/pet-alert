@@ -1,23 +1,19 @@
 import { decorate, observable, action, computed } from "mobx";
 
 class UserStore {
-  contactInfo = [
-    {
-      firstName: "John",
-      lastName: "Smith",
-      phoneNumber: "555-5555"
-    },
-    {
-      firstName: "Jane",
-      lastName: "Smith",
-      phoneNumber: "555-5555"
-    }
-  ]
+  contacts = []
   
+  submitContact(data) {
+    const payload = {
+      ...data
+    }
+
+    console.log(payload)
+  }
 }
 
 decorate(UserStore, {
-  contactInfo: observable
+  contacts: observable
 })
 
 export default new UserStore();

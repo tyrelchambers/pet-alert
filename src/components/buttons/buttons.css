@@ -30,3 +30,13 @@
   background: var(--accent-primary);
   color: white;
 }
+
+.btn-secondary.danger {
+  border: 2px solid var(--danger);
+  color: var(--danger);
+}
+
+.btn-secondary.danger:hover {
+  background: var(--danger);
+  color: white;
+} 

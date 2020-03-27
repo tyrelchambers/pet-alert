@@ -13,6 +13,7 @@ import SerialStore from './stores/SerialStore'
 import { Provider } from 'mobx-react';
 import ModalContainer from './components/ModalContainer/ModalContainer';
 import SerialShow from './pages/SerialShow/SerialShow';
+import Contacts from './pages/Contacts/Contacts';
 
 const stores = {
   UserStore,
@@ -53,6 +54,7 @@ ReactDOM.render(
           <Route exact path="/register" component={Register} />
           <Route exact path="/serial/:slug" component={SerialShow} />
           <Route exact path="/dashboard" component={Home}/>
+          <Route exact path="/contacts" component={Contacts} />
         </Switch>
       </Router>
     </Provider>

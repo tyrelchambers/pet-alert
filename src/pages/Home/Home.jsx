@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import NewSerialForm from '../../components/forms/NewSerialForm';
 import Display from '../../layouts/Display/Display';
 import Serials from '../../layouts/Serials/Serials';
+import HomeSubNav from '../../layouts/HomeSubNav/HomeSubNav';
 
 const Home = ({ModalStore, SerialStore}) => {
 
@@ -22,7 +23,8 @@ const Home = ({ModalStore, SerialStore}) => {
           />
         </div>  
       </div>
-    
+      <HomeSubNav/>
+            
       <Serials />
     </Display>
   );
