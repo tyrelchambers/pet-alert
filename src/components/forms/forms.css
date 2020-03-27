@@ -58,3 +58,7 @@ input[type="date"] {
   display: flex;
 }
 
+.search {
+  width: 100%;
+  font-size: 2rem;
+}

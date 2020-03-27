@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useParams} from 'react-router-dom'
 import Display from '../../layouts/Display/Display';
 import PetProfile from '../../layouts/PetProfile/PetProfile';

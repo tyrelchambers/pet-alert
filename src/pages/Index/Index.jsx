@@ -35,6 +35,7 @@ const Index = () => {
           <SecButton
             text="Search serial number"
             icon={<i className="fas fa-search mr-4"></i>}
+            onClick={() => history.push('/search')}
           />
         </div>
       </div>

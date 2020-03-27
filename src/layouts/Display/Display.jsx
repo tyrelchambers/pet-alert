@@ -4,12 +4,12 @@ import './Display.css'
 
 const Display = ({children}) => {
   return (
-    <div>
+    <>
       <Header />
-      <div className="container mx-auto mt-16">
+      <div className="container mx-auto mt-16 h-full">
         {children}
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,20 +1,19 @@
 import React from 'react';
 import { MainButton, SecButton } from '../buttons/buttons';
-import ExistingAddress from '../ExistingAddress/ExistingAddress';
 import { inject, observer } from 'mobx-react';
 
-const EditSerialForm = ({data, UserStore, SerialStore, ModalStore}) => {
+const EditSerialForm = ({data, SerialStore, ModalStore}) => {
   const submitHandler = (e) => {
     e.preventDefault();
     SerialStore.submit()
     ModalStore.setIsOpen(false)
   }
 
-
   const insertVaccine = (e) => {
     e.preventDefault();
     SerialStore.insertNewVaccine();
   }
+
   return (
     <form className="form form-white">
       <div className="field-group">
