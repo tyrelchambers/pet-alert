@@ -25,7 +25,7 @@ const Contacts = ({ModalStore, UserStore}) => {
   return (
     <Display>
      <DashboardDisplay>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between page-header">
           <h1 className="title-lg">Contacts</h1>
           <div className="max-w-sm">
             <MainButton
@@ -39,7 +39,7 @@ const Contacts = ({ModalStore, UserStore}) => {
           </div>  
         </div>
 
-        <div className="contacts-body">
+        <div className="contacts-body mt-2">
           <p>Add your basic contact information just incase someone finds your pet and needs to reach you.</p>
 
           <div className="mt-8">

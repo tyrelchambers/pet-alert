@@ -88,3 +88,13 @@ hr {
     font-size: 2rem;
   }
 }
+
+@media screen and (max-width: 428px) {
+  .page-header {
+    flex-direction: column;
+  }
+
+  .page-header > .title-lg {
+    margin-bottom: 0.5em;
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import HomeSubNav from '../HomeSubNav/HomeSubNav';
+import './DashboardDisplay.css'
 
 const DashboardDisplay = ({children}) => {
   return (

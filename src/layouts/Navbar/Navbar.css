@@ -43,3 +43,9 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .navbar-wrapper {
+    display: none;
+  }
+}

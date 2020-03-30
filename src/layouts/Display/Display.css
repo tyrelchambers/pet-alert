@@ -1,0 +1,6 @@
+@media screen and (max-width: 768px) {
+  .display-wrapper {
+    flex-direction: column;
+    margin-top: 0;
+  }
+}

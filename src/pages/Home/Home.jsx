@@ -4,15 +4,15 @@ import { inject, observer } from 'mobx-react';
 import NewSerialForm from '../../components/forms/NewSerialForm';
 import Display from '../../layouts/Display/Display';
 import Serials from '../../layouts/Serials/Serials';
-import HomeSubNav from '../../layouts/HomeSubNav/HomeSubNav';
 import DashboardDisplay from '../../layouts/DashboardDisplay/DashboardDisplay';
+import './Home.css'
 
-const Home = ({ModalStore, SerialStore}) => {
+const Home = ({ModalStore}) => {
 
   return (
     <Display>
       <DashboardDisplay>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between page-header">
           <h1 className="title-lg">Profile</h1>
           <div className="max-w-sm">
             <MainButton
@@ -32,4 +32,4 @@ const Home = ({ModalStore, SerialStore}) => {
   );
 }
 
-export default inject("ModalStore", "SerialStore")(observer(Home));
+export default inject("ModalStore")(observer(Home));

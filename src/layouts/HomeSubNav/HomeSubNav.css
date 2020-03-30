@@ -23,3 +23,23 @@
   border-radius: 50%;
   transition: all 0.2s ease;
 }
+
+@media screen and (max-width: 768px) {
+  .dash-nav {
+    flex-direction: row;
+    background: var(--bg);
+    margin: 1em 0;
+    padding: 0.3em;
+    border-radius: 8px;
+  }
+
+  .nav-dot {
+    display: none;
+  }
+
+  .dash-link {
+    color: white;
+    background: var(--accent-primary);
+    border-radius: 5px;
+  }
+}

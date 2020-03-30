@@ -8,17 +8,19 @@ import { inject, observer } from 'mobx-react';
 const Header = ({GeneralStore}) => {
   return (
     <div className="header flex flex-row items-center">
-      <div className={`nav-toggle ${GeneralStore.navOpen ? "expanded" : ""}`} onClick={() => {
-        GeneralStore.setNavOpen(!GeneralStore.navOpen)
-      }}>
-        <div className="line"></div>
-        <div className="line"></div>
-        <div className="line"></div>
+      <div className="flex flex-row items-center">
+        <div className={`nav-toggle mr-8 ${GeneralStore.navOpen ? "expanded" : ""}`} onClick={() => {
+          GeneralStore.setNavOpen(!GeneralStore.navOpen)
+        }}>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+        </div>
+        <h1 className="brand-title flex flex-row items-center">
+          <NavLink to="/">Some Company</NavLink>
+        </h1>
       </div>
       <MobileNavbar />
-      <h1 className="brand-title flex flex-row items-center">
-        <NavLink to="/">Some Company</NavLink>
-      </h1>
       <Navbar />
     </div>
   );
