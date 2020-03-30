@@ -19,17 +19,17 @@ const NewContactForm = ({ModalStore, UserStore}) => {
     <form className="form form-white">
       <div className="field-group">
         <label htmlFor="firstName" className="label">First Name</label>
-        <input type="text" className="input" name="firstName" placeholder="your first name" value={contact.firstName} onChange={(e) => setContact({[e.target.name]: e.target.value})}/>
+        <input type="text" className="input" name="firstName" placeholder="your first name" value={contact.firstName} onChange={(e) => setContact({...contact, [e.target.name]: e.target.value})}/>
       </div>
 
       <div className="field-group">
         <label htmlFor="lastName" className="label">Last Name</label>
-        <input type="text" className="input" name="lastName" placeholder="your last name" value={contact.lastName} onChange={(e) => setContact({[e.target.name]: e.target.value})}/>
+        <input type="text" className="input" name="lastName" placeholder="your last name" value={contact.lastName} onChange={(e) => setContact({...contact, [e.target.name]: e.target.value})}/>
       </div>
 
       <div className="field-group">
         <label htmlFor="phone" className="label">Phone Number (optional)</label>
-        <input type="tel" className="input" name="phoneNumber" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" value={contact.phoneNumber} onChange={(e) => setContact({[e.target.name]: e.target.value})}/>
+        <input type="tel" className="input" name="phoneNumber" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="000-000-0000" value={contact.phoneNumber} onChange={(e) => setContact({...contact, [e.target.name]: e.target.value})}/>
       </div>
 
       <MainButton

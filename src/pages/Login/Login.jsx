@@ -7,13 +7,13 @@ import { NavLink } from 'react-router-dom';
 const Login = () => {
   return (
     <Display>
-      <div className="container align-center flex-column mx-auto mt-16">
+      <div className="container align-center flex-column mx-auto">
         <h1 className="title-lg text-center">Login</h1>
 
         <LoginForm />
-        <div className="flex flex-row justify-center items-center">
+        <div className="flex flex-row justify-center items-center mt-4">
           <p>Or</p> 
-          <NavLink to="/register" className="link">Register</NavLink>
+          <NavLink to="/register" className="link ml-2">Register</NavLink>
         </div>
       </div>
     </Display>

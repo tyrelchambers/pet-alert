@@ -18,9 +18,8 @@ const Index = () => {
       </video>
       
       <div className="index-body">
-        <div>
-          
-          <h1 className="title-hg mb-8">Protect the pet you love. They are family.</h1>
+           
+      <h1 className="title-hg mb-8">Protect the pet you love. They are family.</h1>
           <p className="text-block mb-16">
           I'm baby butcher asymmetrical swag, irony prism tofu sartorial intelligentsia kombucha occupy fingerstache. Beard lyft ennui gastropub iPhone cronut jianbing meh tbh blue bottle yuccie unicorn hexagon. Af man bun microdosing sustainable tumeric, squid prism mlkshk sartorial cronut trust fund tote bag hella normcore VHS. Single-origin coffee live-edge selfies mixtape tumblr put a bird on it, helvetica intelligentsia cardigan YOLO direct trade occupy.
           </p>
@@ -37,7 +36,6 @@ const Index = () => {
             icon={<i className="fas fa-search mr-4"></i>}
             onClick={() => history.push('/search')}
           />
-        </div>
       </div>
     </div>
   );

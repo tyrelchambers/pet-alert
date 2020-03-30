@@ -16,11 +16,13 @@ import SerialShow from './pages/SerialShow/SerialShow';
 import Contacts from './pages/Contacts/Contacts';
 import Search from './pages/Search/Search';
 import Login from './pages/Login/Login';
+import GeneralStore from './stores/GeneralStore'
 
 const stores = {
   UserStore,
   ModalStore,
-  SerialStore
+  SerialStore,
+  GeneralStore
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -50,6 +52,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider {...stores}>
       <ModalContainer />
+
       <Router to="/">
         <Switch>
           <Route exact path="/" component={Index}/>

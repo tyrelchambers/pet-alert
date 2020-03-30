@@ -1,0 +1,25 @@
+
+.dash-link {
+  color: var(--accent-primary);
+  font-weight: bold;
+  transition: all 0.2s ease;
+  padding: 0.5em 1.5em;
+  margin: 0.5em;
+  background: white;
+}
+
+.dash-link:hover .nav-dot {
+  background: var(--accent-primary);
+}
+
+.dash-nav {
+  margin-right: 2em;
+}
+
+.nav-dot {
+  height: 10px;
+  width: 10px;
+  margin-right: 1em;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}

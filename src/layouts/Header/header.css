@@ -12,3 +12,23 @@
   color: var(--title);
   font-weight: bold;
 }
+
+.nav-toggle {
+  height: 40px;
+  width: 30px;
+  position: relative;
+  z-index: 3;
+}
+
+.nav-toggle.expanded .line {
+  background: white;
+}
+
+.nav-toggle.light {
+  background: white;
+}
+.line {
+  height: 2px;
+  margin: 6px 0;
+  background: var(--accent-primary);
+}

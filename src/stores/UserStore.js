@@ -1,4 +1,4 @@
-import { decorate, observable } from "mobx";
+import { decorate, observable, action } from "mobx";
 
 class UserStore {
   contacts = []
@@ -8,12 +8,13 @@ class UserStore {
       ...data
     }
 
-    console.log(payload)
+    this.contacts = [{...data}]
   }
 }
 
 decorate(UserStore, {
-  contacts: observable
+  contacts: observable,
+  submitContact: action
 })
 
 export default new UserStore();
