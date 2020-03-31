@@ -25,7 +25,7 @@
 }
 
 .dash-link-active .nav-dot {
-  background: var(--accent-primary);
+  background: var(--accent-primary); 
 }
 
 @media screen and (max-width: 768px) {

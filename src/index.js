@@ -17,6 +17,9 @@ import Contacts from './pages/Contacts/Contacts';
 import Search from './pages/Search/Search';
 import Login from './pages/Login/Login';
 import GeneralStore from './stores/GeneralStore'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Profile from './pages/Profile/Profile';
 
 const stores = {
   UserStore,
@@ -48,24 +51,35 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   );
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider {...stores}>
-      <ModalContainer />
+const InitialLoad = () => {
+  React.useEffect(() => {
+    stores.UserStore.getUser()
+  }, [])
 
-      <Router to="/">
-        <Switch>
-          <Route exact path="/" component={Index}/>
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/serial/:slug" component={SerialShow} />
-          <Route exact path="/dashboard" component={Home}/>
-          <Route exact path="/contacts" component={Contacts} />
-          <Route exact path="/search" component={Search} />
-          <Route exact path="/login" component={Login} />
-        </Switch>
-      </Router>
-    </Provider>
-  </React.StrictMode>,
+  return (
+    <React.StrictMode>
+      <Provider {...stores}>
+        <ModalContainer />
+        <ToastContainer />
+        <Router to="/">
+          <Switch>
+            <Route exact path="/" component={Index}/>
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/serial/:slug" component={SerialShow} />
+            <Route exact path="/dashboard" component={Home}/>
+            <Route exact path="/contacts" component={Contacts} />
+            <Route exact path="/search" component={Search} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={Profile} />
+          </Switch>
+        </Router>
+      </Provider>
+    </React.StrictMode>
+  )
+}
+
+ReactDOM.render(
+  <InitialLoad/>,
   document.getElementById('root')
 );
 

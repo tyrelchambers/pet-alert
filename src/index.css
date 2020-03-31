@@ -36,6 +36,7 @@ p {
   --bg: #F0F4F8;
   --accent-secondary: #E9B949;
   --danger: #D64545;
+  --disabled: #BCCCDC;
 }
 
 .title-hg {

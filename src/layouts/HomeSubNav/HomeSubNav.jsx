@@ -15,6 +15,12 @@ const HomeSubNav = () => {
         <i className="fas fa-id-card mr-2"></i>
         Contacts
       </NavLink>
+
+      <NavLink to="/profile" className="dash-link flex flex-row items-center" activeClassName="dash-link-active">
+        <div className="nav-dot bg-gray-200"></div>
+        <i className="fas fa-user mr-2"></i>
+        Profile
+      </NavLink>
     </nav>
   );
 }
