@@ -6,7 +6,7 @@ import EditSerialForm from '../../components/forms/EditSerialForm';
 const Serials = ({SerialStore, ModalStore}) => {
   const serials = SerialStore.serials.map((x,id) => (
     <div className="serial-item" key={id}>
-      <h2 className="text-xl">{x.number}</h2>
+      <h2 className="text-xl">{x.serialNumber}</h2>
       
       <div className="serial-actions flex flex-row align-center">
         <i className="fas fa-pencil-alt mr-4 edit" onClick={() => {

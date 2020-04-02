@@ -46,3 +46,7 @@
   color: var(--disabled);
   cursor: not-allowed;
 }
+
+.btn-secondary:disabled:hover {
+  background-color: transparent;
+}

@@ -7,13 +7,20 @@ import Serials from '../../layouts/Serials/Serials';
 import DashboardDisplay from '../../layouts/DashboardDisplay/DashboardDisplay';
 import './Home.css'
 
-const Home = ({ModalStore, UserStore}) => {
+const Home = ({ModalStore, UserStore, SerialStore}) => {
+  React.useEffect(() => {
+    const fn = async () => {
+      await SerialStore.getSerials();
+    }
+
+    fn()
+  }, [])
 
   return (
     <Display>
       <DashboardDisplay>
         <div className="flex flex-row justify-between page-header">
-        <h1 className="title-lg">Good day, {UserStore.currentUser.email}!</h1>
+        <h1 className="title-lg">Good day, {UserStore.currentUser.firstName || UserStore.currentUser.email}!</h1>
           <div className="max-w-sm">
             <MainButton
               icon={<i className="fas fa-plus mr-4"></i>}
@@ -32,4 +39,4 @@ const Home = ({ModalStore, UserStore}) => {
   );
 }
 
-export default inject("ModalStore", "UserStore")(observer(Home));
+export default inject("ModalStore", "UserStore", "SerialStore")(observer(Home));

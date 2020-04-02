@@ -1,7 +1,9 @@
 import { decorate, observable, action } from "mobx";
+import Axios from "axios";
 
 class SerialStore {
-  
+  BACKEND = process.env.REACT_APP_BACKEND
+
   serial = {
     number: "",
     pet: "",
@@ -9,16 +11,6 @@ class SerialStore {
   }
 
   serials = [
-    {
-      number: "HIOOIH4884G77GF",
-      pet: "Stuffy",
-      breed: "Husky",
-    },
-    {
-      number: "HIOOIH4F333F884G77GF",
-      pet: "Boobalah",
-      breed: "Some Cat"
-    }
   ]
 
   vaccine = {
@@ -31,7 +23,7 @@ class SerialStore {
   ]
 
   setSerials(serials) {
-    this.serials = [...serials];
+    this.serials = [...this.serials, serials];
   }
 
   updateSerial(key, data) {
@@ -60,11 +52,26 @@ class SerialStore {
     this.serial = {}
   }
 
-  submit() {
-    const payload = {
-      ...this.serial,
-      ...this.vaccines
-    }
+  getSerials = () => {
+    const token = window.localStorage.getItem("token")
+
+    Axios.get(`${this.BACKEND}/api/serials`, {
+      headers: {
+        token
+      }
+    }).then(console.log)
+  }
+
+  submit = () => {
+    const token = window.localStorage.getItem("token")
+
+    Axios.post(`${this.BACKEND}/api/serials/new`, {
+      ...this.serial
+    }, {
+      headers: {
+        token
+      }
+    }).then(res => this.setSerials(res.data))
 
     this.resetState()
   }

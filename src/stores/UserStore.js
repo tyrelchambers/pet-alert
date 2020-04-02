@@ -52,10 +52,40 @@ class UserStore {
   }
 
   submitBasic = (data) => {
+    const token = window.localStorage.getItem("token")
+
+    Axios.post(`${this.BACKEND}/api/profile/me`, {
+      ...data
+    }, {
+      headers: {
+        token
+      }
+    }).then(res => console.log(res))
+    .catch(err => toast.error(err.response))
   }
 
   submitAccount = data => {
     
+  }
+
+  deleteAccount = () => {
+    const token = window.localStorage.getItem("token")
+
+    const prompt = window.confirm("Are you sure you want to delete everything?")
+
+    if (prompt) {
+      Axios.delete(`${this.BACKEND}/api/profile/me`, {
+        headers: {
+          token
+        }
+      }).then(res => {
+        toast.success("Account Deleted, redirecting...")
+  
+        setTimeout(() => {
+          window.location.pathname = "/"
+        }, 5000);
+      })
+    }
   }
 
   setCurrentUser(user) {
