@@ -56,6 +56,22 @@ const EditProfileForm = ({UserStore}) => {
 
   return (
     <form className="form form-white">
+      <div className="field-group">
+        <div className="flex flex-row items-center">
+          <input type="checkbox" name="showPhoneNumber" id="showPhoneNumber" className="mb-2 mr-4"/>
+          <label htmlFor="showPhoneNumber" className="label">Show phone number</label>
+
+        </div>
+        <p>Show your phone number with each serial number? Used when someone needs to contact you about a lost pet.</p>
+      </div>
+      <div className="field-group">
+        <div className="flex flex-row items-center">
+          <input type="checkbox" name="autoNotify" id="autoNotify" className="mb-2 mr-4"/>
+          <label htmlFor="autoNotify" className="label">Notify me when a QR code is scanned?</label>
+        </div>
+        <p>Receive an email when a pet's QR code is scanned</p>
+      </div>
+      <hr/>
       <h2 className="title-md mb-2">Basic Information</h2>
       <div className="field-group">
         <label htmlFor="firstName" className="label">First name</label>

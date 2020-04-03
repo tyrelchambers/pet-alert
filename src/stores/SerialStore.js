@@ -78,7 +78,7 @@ class SerialStore {
 
     this.submitVaccines(serial.uuid)
 
-    //this.resetState()
+    this.resetState()
   }
 
   submitVaccines = (serialId) => {

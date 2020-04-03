@@ -2,12 +2,12 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import './Serials.css'
 import EditSerialForm from '../../components/forms/EditSerialForm';
-import { toJS } from 'mobx';
+import { Link } from 'react-router-dom';
 
 const Serials = ({SerialStore, ModalStore}) => {
   const serials = SerialStore.serials.map((x,id) => (
     <div className="serial-item" key={id}>
-      <h2 className="text-xl">{x.serialNumber}</h2>
+      <Link className="text-xl" to={`/serial/${x.serialNumber}`}>{x.serialNumber}</Link>
       
       <div className="serial-actions flex flex-row align-center">
         <i className="fas fa-pencil-alt mr-4 edit" onClick={() => {
