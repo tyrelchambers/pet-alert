@@ -37,12 +37,12 @@ const SerialShow = ({UserStore, SerialStore}) => {
       <div className="flex flex-col w-full">
         <div className="bg">
           <h1 className="title-lg">Serial Number: {serial.serialNumber}</h1>
-            <div className="mt-8 flex flex-row">
-            <p className="title-lg mr-10">Pet Name: {serial.petName}</p>
-            <p className="title-lg">Breed: {serial.breed}</p>
-          </div>
         </div>
    
+        <div className="mt-8 flex flex-row">
+          <p className="title-md mr-10">Pet Name: {serial.petName}</p>
+          <p className="title-md">Breed: {serial.breed}</p>
+        </div>
 
         <div className="mt-16">
           <h3 className="title-md mb-4">Nearest Veterinary Office</h3>
