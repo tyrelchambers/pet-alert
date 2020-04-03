@@ -2,6 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import './Serials.css'
 import EditSerialForm from '../../components/forms/EditSerialForm';
+import { toJS } from 'mobx';
 
 const Serials = ({SerialStore, ModalStore}) => {
   const serials = SerialStore.serials.map((x,id) => (
@@ -13,7 +14,7 @@ const Serials = ({SerialStore, ModalStore}) => {
           ModalStore.setIsOpen(true)
           ModalStore.setRender(<EditSerialForm data={x}/>)
         }}></i>
-        <i className="fas fa-trash delete"></i>
+        <i className="fas fa-trash delete" onClick={() => SerialStore.deleteSerial(x.uuid)}></i>
       </div>
     </div>
   ))

@@ -6,7 +6,8 @@ import {toast} from 'react-toastify'
 const EditProfileForm = ({UserStore}) => {
   const [basic, setBasic] = React.useState({
     firstName: "",
-    lastName: ""
+    lastName: "",
+    phoneNumber: ""
   })
 
   const [account, setAccount] = React.useState({
@@ -19,7 +20,7 @@ const EditProfileForm = ({UserStore}) => {
   const submitBasic = (e) => {
     e.preventDefault()
 
-    if (!basic.firstName && !basic.lastName) return;
+    if (!basic.firstName && !basic.lastName && !basic.phoneNumber) return;
 
     UserStore.submitBasic(basic)
   }
@@ -66,11 +67,17 @@ const EditProfileForm = ({UserStore}) => {
         <input type="text" className="input" name="lastName" value={basic.lastName} placeholder="enter your last name" onChange={e => setBasic({...basic, [e.target.name]: e.target.value})}/>
       </div>
 
+      <div className="field-group">
+        <label htmlFor="phoneNumber" className="label">Phone Number</label>
+        <input type="text" className="input" name="phoneNumber" value={basic.phoneNumber} placeholder="(0-000-0000)" onChange={e => setBasic({...basic, [e.target.name]: e.target.value})}/>
+        <p>Your phone number to notifed if your pet's QR code is scanned</p>
+      </div>
+
       <SecButton
         icon={<i className="fas fa-arrow-alt-circle-right mr-4"></i>}
         text="Save basic information"
         onClick={e => submitBasic(e)}
-        disabled={(!basic.firstName && !basic.lastName)}
+        disabled={(!basic.firstName && !basic.lastName &&!basic.phoneNumber)}
       />
 
       <hr/>

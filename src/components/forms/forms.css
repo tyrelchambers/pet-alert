@@ -1,11 +1,13 @@
 .form {
   width: 100%;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
   margin-top: 2em;
 }
 
+.form.center {
+  margin-left: auto;
+  margin-right: auto;
+}
 .form-white {
   background-color: white;
   padding: 1em;

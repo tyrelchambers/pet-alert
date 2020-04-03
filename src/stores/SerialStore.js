@@ -5,8 +5,8 @@ class SerialStore {
   BACKEND = process.env.REACT_APP_BACKEND
 
   serial = {
-    number: "",
-    pet: "",
+    serialNumber: "",
+    petName: "",
     breed: ""
   }
 
@@ -59,21 +59,49 @@ class SerialStore {
       headers: {
         token
       }
-    }).then(console.log)
+    }).then(res => this.serials = [...res.data])
   }
 
-  submit = () => {
+  submit = async () => {
     const token = window.localStorage.getItem("token")
 
-    Axios.post(`${this.BACKEND}/api/serials/new`, {
+    const serial = await Axios.post(`${this.BACKEND}/api/serials/new`, {
       ...this.serial
     }, {
       headers: {
         token
       }
-    }).then(res => this.setSerials(res.data))
+    }).then(res => {
+      this.setSerials(res.data)
+      return res.data
+    })
 
-    this.resetState()
+    this.submitVaccines(serial.uuid)
+
+    //this.resetState()
+  }
+
+  submitVaccines = (serialId) => {
+    const token = window.localStorage.getItem("token")
+
+    Axios.post(`${this.BACKEND}/api/vaccines/new`, {
+      vaccines: this.vaccines,
+      serialId
+    }, {
+      headers: {
+        token
+      }
+    }).then(console.log)
+  }
+
+  deleteSerial =(id)=> {
+    const token = window.localStorage.getItem("token")
+
+    Axios.delete(`${this.BACKEND}/api/serials/${id}`, {
+      headers: {
+        token
+      }
+    }).then(res => window.location.reload())
   }
 
 }

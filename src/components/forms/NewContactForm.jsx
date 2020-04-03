@@ -16,7 +16,7 @@ const NewContactForm = ({ModalStore, UserStore}) => {
   }
 
   return (
-    <form className="form form-white">
+    <form className="form form-white center">
       <div className="field-group">
         <label htmlFor="firstName" className="label">First Name</label>
         <input type="text" className="input" name="firstName" placeholder="your first name" value={contact.firstName} onChange={(e) => setContact({...contact, [e.target.name]: e.target.value})}/>

@@ -42,7 +42,7 @@ const RegisterForm = ({UserStore}) => {
   }
   
   return (
-    <form className="form">
+    <form className="form center">
       <div className="field-group">
         <label htmlFor="email" className="label">Email</label>
         <input type="text" className="input" name="email" placeholder="user@example.com" value={credentials.email} onChange={(e) => setCredentials({...credentials, [e.target.name]: e.target.value})}/>

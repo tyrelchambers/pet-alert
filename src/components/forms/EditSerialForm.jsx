@@ -15,20 +15,20 @@ const EditSerialForm = ({data, SerialStore, ModalStore}) => {
   }
 
   return (
-    <form className="form form-white">
+    <form className="form form-white center">
       <div className="field-group">
         <label htmlFor="serial" className="label">Serial Number</label>
-        <input type="text" className="input" name="serial" value={data.number} onChange={e => SerialStore.updateSerial("number", e.target.value)}/>
+        <input type="text" className="input" name="serial" value={data.serialNumber} onChange={e => SerialStore.updateSerial("serialNumber", e.target.value)}/>
       </div>
 
       <div className="field-group">
         <label htmlFor="serialNumber" className="label">Pet Name</label>
-        <input type="text" className="input" name="pet" placeholder="enter serial number" value={data.pet} onChange={e => SerialStore.updateSerial("pet", e.target.value)}/>
+        <input type="text" className="input" name="pet" placeholder="enter serial number" value={data.petName} onChange={e => SerialStore.updateSerial("petName", e.target.value)}/>
       </div>
 
       <div className="field-group">
         <label htmlFor="serialNumber" className="label">Breed</label>
-        <input type="text" className="input" value={data.breed} placeholder="breed of your pet" name="breed" onChange={(e) => SerialStore.updateSerial("number", e.target.value)}/>
+        <input type="text" className="input" value={data.breed} placeholder="breed of your pet" name="breed" onChange={(e) => SerialStore.updateSerial("breed", e.target.value)}/>
       </div>
       <div className="field-group" id="vaccineWrapper">
         <label htmlFor="serialNumber" className="label">Vaccines</label>

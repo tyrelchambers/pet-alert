@@ -16,7 +16,7 @@ const NewSerialForm = ({SerialStore, ModalStore}) => {
     SerialStore.insertNewVaccine();
   }
   return (
-    <form className="form form-white">
+    <form className="form form-white center">
       <h3 className="text-xl mb-2">Pet Information</h3>
 
       <div className="field-group">

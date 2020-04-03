@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .btn.btn-primary {
