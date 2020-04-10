@@ -47,7 +47,11 @@ function reducer(state, action) {
 }
 
 const EditSerialForm = ({data, SerialStore, ModalStore}) => {
-  const [serial, setSerial] = React.useState()
+  const [serial, setSerial] = React.useState({
+    serialNumber: "",
+    petName: "",
+    breed: ""
+  })
   const [state, dispatch] = useReducer(reducer, vaccines);
 
   React.useEffect(() => {
@@ -99,8 +103,7 @@ const EditSerialForm = ({data, SerialStore, ModalStore}) => {
 
       return false;
     }
-
-    const serialId = await SerialStore.edit()
+    const serialId = await SerialStore.edit(serial)
     await SerialStore.editVaccines(serialId.uuid, state)
     ModalStore.setIsOpen(false)
   }
@@ -127,17 +130,17 @@ const EditSerialForm = ({data, SerialStore, ModalStore}) => {
     <form className="form form-white center">
       <div className="field-group">
         <label htmlFor="serial" className="label">Serial Number</label>
-        <input type="text" className="input" name="serial" value={serial.serialNumber} onChange={e => SerialStore.updateSerial("serialNumber", e.target.value)}/>
+        <input type="text" className="input" name="serialNumber" value={serial.serialNumber} onChange={e => setSerial({...serial, [e.target.name]: e.target.value})}/>
       </div>
 
       <div className="field-group">
         <label htmlFor="serialNumber" className="label">Pet Name</label>
-        <input type="text" className="input" name="pet" placeholder="enter serial number" value={serial.petName} onChange={e => SerialStore.updateSerial("petName", e.target.value)}/>
+        <input type="text" className="input" name="petName" placeholder="enter serial number" value={serial.petName} onChange={e => setSerial({...serial, [e.target.name]: e.target.value})}/>
       </div>
 
       <div className="field-group">
         <label htmlFor="serialNumber" className="label">Breed</label>
-        <input type="text" className="input" value={serial.breed} placeholder="breed of your pet" name="breed" onChange={(e) => SerialStore.updateSerial("breed", e.target.value)}/>
+        <input type="text" className="input" value={serial.breed} placeholder="breed of your pet" name="breed" onChange={(e) => setSerial({...serial, [e.target.name]: e.target.value})}/>
       </div>
       <hr/>
       

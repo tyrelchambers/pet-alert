@@ -1,5 +1,6 @@
 import { decorate, observable, action } from "mobx";
 import Axios from "axios";
+import { toast } from "react-toastify";
 
 class SerialStore {
   BACKEND = process.env.REACT_APP_BACKEND
@@ -81,10 +82,10 @@ class SerialStore {
     this.resetState()
   }
 
-  edit = async () => {
+  edit = async (serial) => {
     const token = window.localStorage.getItem("token")
     return await Axios.put(`${this.BACKEND}/api/serials/edit`, {
-      ...this.serial
+      ...serial
     }, {
       headers: {
         token
@@ -96,7 +97,7 @@ class SerialStore {
 
   editVaccines = async (serialId, vaccines) => {
     const token = window.localStorage.getItem("token")
-    console.log(vaccines)
+
     await Axios.put(`${this.BACKEND}/api/vaccines/edit`, {
       vaccines,
       serialId
@@ -104,7 +105,7 @@ class SerialStore {
       headers: {
         token
       }
-    }).then(console.log)
+    })
   }
   
   submitVaccines = (serialId) => {
@@ -117,7 +118,7 @@ class SerialStore {
       headers: {
         token
       }
-    }).then(console.log)
+    }).then(res => toast.success("Vaccines saved"))
   }
 
   deleteSerial =(id)=> {
