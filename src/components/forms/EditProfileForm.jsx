@@ -55,7 +55,7 @@ const EditProfileForm = ({UserStore}) => {
   }
 
   return (
-    <form className="form form-white">
+    <form className="form form-white wide">
       <div className="field-group">
         <div className="flex flex-row items-center">
           <input type="checkbox" name="showPhoneNumber" id="showPhoneNumber" className="mb-2 mr-4"/>
@@ -71,30 +71,6 @@ const EditProfileForm = ({UserStore}) => {
         </div>
         <p>Receive an email when a pet's QR code is scanned</p>
       </div>
-      <hr/>
-      <h2 className="title-md mb-2">Basic Information</h2>
-      <div className="field-group">
-        <label htmlFor="firstName" className="label">First name</label>
-        <input type="text" className="input" name="firstName" value={basic.firstName} placeholder="enter your first name"  onChange={e => setBasic({...basic, [e.target.name]: e.target.value})}/>
-      </div>
-
-      <div className="field-group">
-        <label htmlFor="lastName" className="label">Last name</label>
-        <input type="text" className="input" name="lastName" value={basic.lastName} placeholder="enter your last name" onChange={e => setBasic({...basic, [e.target.name]: e.target.value})}/>
-      </div>
-
-      <div className="field-group">
-        <label htmlFor="phoneNumber" className="label">Phone Number</label>
-        <input type="text" className="input" name="phoneNumber" value={basic.phoneNumber} placeholder="(0-000-0000)" onChange={e => setBasic({...basic, [e.target.name]: e.target.value})}/>
-        <p>Your phone number to notifed if your pet's QR code is scanned</p>
-      </div>
-
-      <SecButton
-        icon={<i className="fas fa-arrow-alt-circle-right mr-4"></i>}
-        text="Save basic information"
-        onClick={e => submitBasic(e)}
-        disabled={(!basic.firstName && !basic.lastName &&!basic.phoneNumber)}
-      />
 
       <hr/>
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import {useParams} from 'react-router-dom'
 import Display from '../../layouts/Display/Display';
-import PetProfile from '../../layouts/PetProfile/PetProfile';
 import Map from '../../components/Map/Map';
 import { inject, observer } from 'mobx-react';
 import Axios from 'axios';
+import {format} from 'date-fns'
+import './SerialShow.css'
 
-const SerialShow = ({UserStore, SerialStore}) => {
+const SerialShow = ({UserStore}) => {
   const [serial, setSerials] = React.useState();
   const [vaccines, setVaccines] = React.useState();
 
@@ -23,15 +24,33 @@ const SerialShow = ({UserStore, SerialStore}) => {
     fn()
   }, []);
 
-  if (!serial) return null;
+  if (!serial || !vaccines) return null;
 
-  const contacts = UserStore.contacts.map((x, id) => 
-    <div className="contacts-wrapper bg m-2" key={id}>
-      <p className="title-sm accent-primary">{x.firstName} {x.lastName}</p>
-      <p>{x.phoneNumber}</p>
+  const contactList = (
+    <div className="contacts-wrapper bg m-2">
+      <p className="title-sm accent-primary">{serial.firstName} {serial.lastName}</p>
+      <p>{serial.phoneNumber}</p>
+    </div>  
+  ) 
+
+  const vaccineList = vaccines.map((x, id) => 
+    <div className="vaccine bg flex flex-row">
+      <div className="flex flex-col mr-4">
+        <h3>Type</h3>
+        <p>{x.type}</p>
+      </div>
+
+      <div className="flex flex-col mr-4">
+        <h3>Administered</h3>
+        <p>{format(new Date(x.administered), "do MMM, y")}</p>
+      </div>
+
+      <div className="flex flex-col mr-4">
+        <h3>Expiry</h3>
+        <p>{format(new Date(x.expiry), "do MMM, y")}</p>
+      </div>
     </div>
   )
-
   return (
     <Display>
       <div className="flex flex-col w-full">
@@ -39,25 +58,32 @@ const SerialShow = ({UserStore, SerialStore}) => {
           <h1 className="title-lg">Serial Number: {serial.serialNumber}</h1>
         </div>
    
-        <div className="mt-8 flex flex-row">
-          <p className="title-md mr-10">Pet Name: {serial.petName}</p>
-          <p className="title-md">Breed: {serial.breed}</p>
+        <div className="mt-8 flex flex-col">
+          <div className="mr-8 flex flex-row items-center">
+            <h3 className="title-lg header standout"><i className="fas fa-dog mr-4"></i> Pet's name</h3>
+            <p className="standout value">{serial.petName}</p>
+          </div>
+          
+          <div className="flex flex-row items-center">
+            <h3 className="title-lg header standout"><i className="fas fa-paw mr-4"></i> Breed</h3>
+            <p className="standout value">{serial.breed}</p>
+          </div>
         </div>
-
+        <hr/>
         <div className="mt-16">
           <h3 className="title-md mb-4">Nearest Veterinary Office</h3>
           <Map/>
         </div>
 
         <div className="mt-16">
-          <h3 className="title-md">Contact Information</h3>
+          <h3 className="title-md">Owner Information</h3>
           <div className="flex flex-row">
-            {contacts}
+            {contactList}
           </div>
 
           <h3 className="title-md mt-8">Vaccinations</h3>
-          <div className="flex flex-row items-center">
-            {/* {vaccines} */}
+          <div className="flex flex-row items-center mt-4">
+            {vaccineList}
           </div>
         </div>
       </div>

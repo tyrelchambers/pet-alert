@@ -81,6 +81,32 @@ class SerialStore {
     this.resetState()
   }
 
+  edit = async () => {
+    const token = window.localStorage.getItem("token")
+    return await Axios.put(`${this.BACKEND}/api/serials/edit`, {
+      ...this.serial
+    }, {
+      headers: {
+        token
+      }
+    }).then(res => {
+      return res.data
+    }).catch(console.log)
+  }
+
+  editVaccines = async (serialId, vaccines) => {
+    const token = window.localStorage.getItem("token")
+    console.log(vaccines)
+    await Axios.put(`${this.BACKEND}/api/vaccines/edit`, {
+      vaccines,
+      serialId
+    }, {
+      headers: {
+        token
+      }
+    }).then(console.log)
+  }
+  
   submitVaccines = (serialId) => {
     const token = window.localStorage.getItem("token")
 

@@ -7,11 +7,18 @@ class UserStore {
   BACKEND = process.env.REACT_APP_BACKEND
 
   submitContact(data) {
-    const payload = {
-      ...data
-    }
+    const token = window.localStorage.getItem("token")
 
-    this.contacts = [{...data}]
+    Axios.post(`${this.BACKEND}/api/contacts/new`, {
+      ...data
+    }, {
+      headers: {
+        token
+      }
+    }).then(res => this.contacts = [...this.contacts, res.data])
+    .catch(err => toast.error(err.response.body))
+
+    window.location.reload()
   }
 
   register = async (data) => {
@@ -61,11 +68,25 @@ class UserStore {
         token
       }
     }).then(res => console.log(res))
-    .catch(err => toast.error(err.response))
+    .catch(err => toast.error(err.response.body))
+    window.location.reload()
   }
 
   submitAccount = data => {
     
+  }
+
+  deleteContact = (id) => {
+    const token = window.localStorage.getItem("token")
+
+    Axios.delete(`${this.BACKEND}/api/contacts/${id}`, {
+      headers: {
+        token
+      }
+    }).then(res => toast.success("Contact deleted"))
+    .catch(err => toast.error(err.response.body))
+
+    window.location.reload()    
   }
 
   deleteAccount = () => {

@@ -12,7 +12,8 @@ const Serials = ({SerialStore, ModalStore}) => {
       <div className="serial-actions flex flex-row align-center">
         <i className="fas fa-pencil-alt mr-4 edit" onClick={() => {
           ModalStore.setIsOpen(true)
-          ModalStore.setRender(<EditSerialForm data={x}/>)
+          SerialStore.addSerial(x)
+          ModalStore.setRender(<EditSerialForm data={x} />)
         }}></i>
         <i className="fas fa-trash delete" onClick={() => SerialStore.deleteSerial(x.uuid)}></i>
       </div>

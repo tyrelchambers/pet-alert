@@ -4,20 +4,37 @@ import Display from '../../layouts/Display/Display';
 import { inject, observer } from 'mobx-react';
 import { MainButton, SecButton } from '../../components/buttons/buttons';
 import NewContactForm from '../../components/forms/NewContactForm';
-import HomeSubNav from '../../layouts/HomeSubNav/HomeSubNav';
 import DashboardDisplay from '../../layouts/DashboardDisplay/DashboardDisplay';
+import Axios from 'axios';
 
 const Contacts = ({ModalStore, UserStore}) => {
   const [contacts, setContacts] = React.useState([])
 
+  React.useEffect(() => {
+    const token = window.localStorage.getItem('token')
+
+    const fn = async () => {
+      await Axios.get(`${process.env.REACT_APP_BACKEND}/api/contacts`, {
+        headers: {
+          token
+        }
+      }).then(res => setContacts([...res.data]))
+    }
+
+    fn()
+  }, []);
+
   const contactList = contacts.map((x, id) => 
-    <div className="contact-item flex flex-col items-center m-4" key={id}>
-      <p className="text-3xl font-bold accent-primary">{x.firstName} {x.lastName}</p>
-      <p>{x.phoneNumber}</p>
+    <div className="contact-item flex flex-row bg items-center m-4 w-full" key={id}>
+      <div className="flex flex-col flex-1">
+        <p className="text-3xl font-bold accent-primary">{x.firstName} {x.lastName}</p>
+        <p>{x.phoneNumber}</p>
+      </div>
       <div className="mt-4">
         <SecButton
           text="Delete contact"
-          classes="danger"
+          classes="danger mt-4"
+          onClick={() => UserStore.deleteContact(x.uuid)}
         />
       </div>
     </div>
@@ -50,7 +67,7 @@ const Contacts = ({ModalStore, UserStore}) => {
             }
 
             {contacts.length > 0 &&
-              <div className="flex flex-row">
+              <div className="flex flex-col">
                 {contactList}
               </div>
             }
