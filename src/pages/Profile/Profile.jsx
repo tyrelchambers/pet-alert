@@ -14,6 +14,7 @@ const Profile = ({UserStore}) => {
         <EditProfileForm />
         <hr/>
    
+        <div className="p-4">
         <h2 className="title-md">Danger Zone</h2>
         <p className="mb-4">Actions performed here are permanent</p>
         <SecButton
@@ -22,6 +23,7 @@ const Profile = ({UserStore}) => {
           classes="danger"
           onClick={UserStore.deleteAccount}
         />
+        </div>
       
       </DashboardDisplay>
     </Display>
