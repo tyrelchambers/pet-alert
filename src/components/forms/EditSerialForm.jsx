@@ -3,6 +3,7 @@ import { MainButton, SecButton } from '../buttons/buttons';
 import { inject, observer } from 'mobx-react';
 import Axios from 'axios';
 import { format, parseISO } from 'date-fns';
+import { toast } from 'react-toastify';
 
 const vaccines = []
 
@@ -31,7 +32,13 @@ function reducer(state, action) {
         return x
       })
       return [...item]
-      
+
+    case 'remove':
+      const copy = [...state]
+      copy.splice(action.payload.id, 1)
+    
+      return [...copy]; 
+
     case 'initialize':
       return [...action.payload]
     default:
@@ -67,17 +74,28 @@ const EditSerialForm = ({data, SerialStore, ModalStore}) => {
 
     let errors = []
 
-    for (let i = 0; i < state.length; i++) {
-      if (!state[i].type && !state[i].adminstered && !state[i].expiry) {
-        errors.push(state[i].id)
+    state.map((x, id) => {
+      if (!x.type || !x.administered || !x.expiry) {
+        errors.push(id)
+      } else {
+        errors.slice(id, 1)
       }
-    }
-    
+    })
+
     if (errors.length > 0) {
       for (let i = 0; i < errors.length; i++) {
         const row = document.querySelector(`#vacc_${errors[i]}`)
-        console.log(row)
+        if (row) {
+          row.classList.add("vaccine")
+          row.classList.add("error")
+        } else {
+          if (state[i].type && state[i].administered && state[i].expiry) {
+            row.classList.remove("vaccine")
+            row.classList.remove("error")
+          }
+        }
       }
+    
 
       return false;
     }
@@ -92,7 +110,17 @@ const EditSerialForm = ({data, SerialStore, ModalStore}) => {
     dispatch({type: 'insertNew'})
   }
 
+  const removeVaccine = (uuid) => {
+    const token = window.localStorage.getItem("token")
 
+    Axios.delete(`${process.env.REACT_APP_BACKEND}/api/vaccines/${uuid}`, {
+      headers: {
+        token
+      }
+    })
+    .then(res => toast.success("Vaccine removed"))
+    .catch(err => toast.error(err.response.body))
+  }
   
 
   return (
@@ -111,14 +139,17 @@ const EditSerialForm = ({data, SerialStore, ModalStore}) => {
         <label htmlFor="serialNumber" className="label">Breed</label>
         <input type="text" className="input" value={serial.breed} placeholder="breed of your pet" name="breed" onChange={(e) => SerialStore.updateSerial("breed", e.target.value)}/>
       </div>
+      <hr/>
+      
       <div className="field-group" id="vaccineWrapper">
-        <label htmlFor="serialNumber" className="label">Vaccines</label>
-        <div className="flex flex-row">
-          <p className="title-md flex-1">Type</p>
-          <p className="title-md flex-2">Adminstered</p>
-          <p className="title-md">Expiry</p>
-        </div>
-        {state.map((x, id) => <DefaultVaccine key={`vacc_${id}`} id={id} data={x} dispatch={dispatch}/>)}
+        {state.map((x, id) => 
+          <DefaultVaccine 
+            key={`vacc_${id}`} 
+            id={id} 
+            data={x} 
+            dispatch={dispatch}
+            removeVaccine={removeVaccine}
+          />)}
         
       </div>
       <div className="mt-4">
@@ -142,37 +173,47 @@ const EditSerialForm = ({data, SerialStore, ModalStore}) => {
   );
 }
 
-const DefaultVaccine = ({id, data, dispatch}) => (
-  data ? <div className="flex flex-row mt-1 mb-1 has-remove vaccine error" id={`vacc_${id}`}>
+const DefaultVaccine = ({id, data, dispatch, removeVaccine}) => (
+  data ? <div className="flex flex-row mt-1 mb-1 has-remove" id={`vacc_${id}`}>
   <button className="remove-vaccine" onClick={(e) => {
     e.preventDefault();
-    // vaccines.splice(id, 1)
+    dispatch({type: 'remove', payload: {id}})
+    removeVaccine(data.uuid)
   }}>
     <i className="fas fa-minus-circle"></i>
   </button>
-  <input 
-    type="text" 
-    className="input flex-1"
-    placeholder={`vaccination ${id + 1}`} 
-    onChange={(e) => dispatch({type: 'update', payload: {id, type: e.target.value}})}
-    value={data.type}
-    name="type"
-  />
-  <input 
-    type="date" 
-    className="date-picker" 
-    name="administered" 
-    onChange={(e) => dispatch({type: 'update', payload: {id, administered: e.target.value}})}
-    value={data.administered ? format(parseISO(data.administered), 'yyyy-MM-dd') : ""}
-  />
-  <input 
-    type="date" 
-    className="date-picker" 
-    name="expiry" 
-    onChange={(e) => dispatch({type: 'update', payload: {id, expiry: e.target.value}})}
-    value={data.expiry ? format(parseISO(data.expiry), 'yyyy-MM-dd') : ""}
+  <div className="field-group flex-1 mr-2">
+    <label htmlFor="type" className="label">Vaccination - {id + 1}</label>
+    <input 
+      type="text" 
+      className="input"
+      placeholder={`vaccination ${id + 1}`} 
+      onChange={(e) => dispatch({type: 'update', payload: {id, type: e.target.value}})}
+      value={data.type}
+      name="type"
+    />
+  </div>
+  <div className="field-group mr-2">
+    <label htmlFor="administered" className="label">Administered</label>
+    <input 
+      type="date" 
+      className="date-picker" 
+      name="administered" 
+      onChange={(e) => dispatch({type: 'update', payload: {id, administered: e.target.value}})}
+      value={data.administered ? format(parseISO(data.administered), 'yyyy-MM-dd') : ""}
+    />
+  </div>
+  <div className="field-group">
+    <label htmlFor="expiry" className="label">Expiry</label>
+    <input 
+      type="date" 
+      className="date-picker" 
+      name="expiry" 
+      onChange={(e) => dispatch({type: 'update', payload: {id, expiry: e.target.value}})}
+      value={data.expiry ? format(parseISO(data.expiry), 'yyyy-MM-dd') : ""}
 
-  />
+    />
+  </div>
 </div> : null
 )
 

@@ -69,6 +69,10 @@ hr {
 
 }
 
+.text-danger {
+  color: var(--danger);
+}
+
 .bg {
   padding: 1em;
   background-color: var(--bg);
